@@ -56,7 +56,7 @@ const performCalculation = async (): Promise<void> => {
 
 		let result: number;
 
-		// Validate the operator
+		// Check for division by zero
 		if (operator === '/' && secondNumber === 0) {
 			showError('Division by zero is not allowed');
 			return;
