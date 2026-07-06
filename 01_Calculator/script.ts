@@ -23,7 +23,8 @@ const validateNumber = (input: string) =>
 		? 'Please enter a valid number'
 		: true;
 
-const toNumber = (input: string) => Number(input); // Convert input to number
+// Convert input to number
+const toNumber = (input: string) => Number(input);
 
 // Function to perform the calculation based on user input
 const performCalculation = async (): Promise<void> => {
@@ -51,10 +52,8 @@ const performCalculation = async (): Promise<void> => {
 			}
 		]);
 
-		// Destructuring
 		const { firstNumber, secondNumber, operator } = answers;
 
-		// Default result variable
 		let result: number;
 
 		// Validate the operator
@@ -81,7 +80,6 @@ const performCalculation = async (): Promise<void> => {
 				throw new Error('Invalid operator');
 		}
 
-		// Round the result
 		const finalResult = Math.round(result * 100) / 100;
 
 		// Display the result
