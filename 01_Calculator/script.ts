@@ -9,44 +9,39 @@ type Answers = {
 }
 
 type Again = {
-    again: boolean
+	again: boolean;
 }
 
-// Function to display error messages in red
+// Function to display error messages
 const showError = (message: string) => {
 	console.error(chalk.red(message));
 };
 
+// Shared validation and filtering for number inputs
+const validateNumber = (input: string) =>
+	input.trim() === '' || isNaN(Number(input))
+		? 'Please enter a valid number'
+		: true;
+
+const toNumber = (input: string) => Number(input); // Convert input to number
+
 // Function to perform the calculation based on user input
 const performCalculation = async (): Promise<void> => {
 	try {
-		const answers: Answers = await inquirer.prompt([
+		const answers = await inquirer.prompt<Answers>([
 			{
 				type: 'input',
 				name: 'firstNumber',
 				message: 'Enter the first number:',
-				validate: (input: string) => {
-					const firstNumber = Number(input);
-
-					if (typeof firstNumber !== 'number' || isNaN(firstNumber) || input.trim() === '') {
-						return 'Please enter a valid number';
-					}
-					return true;
-				},
-				filter: (input: string) => Number(input) // Convert input to number
+				validate: validateNumber,
+				filter: toNumber
 			},
 			{
 				type: 'input',
 				name: 'secondNumber',
 				message: 'Enter the second number:',
-				validate: (input: string) => {
-					const secondNumber = Number(input);
-					if (typeof secondNumber !== 'number' || isNaN(secondNumber) || input.trim() === '') {
-						return 'Please enter a valid number';
-					}
-					return true;
-				},
-				filter: (input: string) => Number(input) // Convert input to number
+				validate: validateNumber,
+				filter: toNumber
 			},
 			{
 				type: 'select',
@@ -86,27 +81,35 @@ const performCalculation = async (): Promise<void> => {
 				throw new Error('Invalid operator');
 		}
 
+		// Round the result
+		const finalResult = Math.round(result * 100) / 100;
+
 		// Display the result
-		console.log(`Result: ${firstNumber} ${operator} ${secondNumber} = ${result}`);
-
-		const again: Again = await inquirer.prompt([
-			{
-				type: 'confirm',
-				name: 'again',
-				message: 'Do you want to perform another calculation?',
-				default: false
-			}
-		])
-
-		if (again.again) {
-			await performCalculation();
-		} else {
-			console.log(chalk.green('Thank you for using the calculator!'));
-		}
+		console.log(chalk.cyan(`Result: ${firstNumber} ${operator} ${secondNumber} = ${finalResult}`));
 
 	} catch (err) {
 		console.error(chalk.red('Something went wrong:'), err);
 	}
 };
 
-performCalculation();
+// Runs calculations in a loop until the user decides to stop
+const main = async (): Promise<void> => {
+	while (true) {
+		await performCalculation();
+
+		const { again } = await inquirer.prompt<Again>([
+			{
+				type: 'confirm',
+				name: 'again',
+				message: 'Do you want to perform another calculation?',
+				default: false
+			}
+		]);
+
+		if (!again) break;
+	}
+
+	console.log(chalk.green('Thank you for using the calculator!'));
+};
+
+main();
