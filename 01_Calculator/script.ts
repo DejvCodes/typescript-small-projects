@@ -18,10 +18,11 @@ const showError = (message: string) => {
 };
 
 // Shared validation and filtering for number inputs
-const validateNumber = (input: string) =>
-	input.trim() === '' || isNaN(Number(input))
+const validateNumber = (input: string) => {
+	return input.trim() === '' || isNaN(Number(input))
 		? 'Please enter a valid number'
 		: true;
+};
 
 // Convert input to number
 const toNumber = (input: string) => Number(input);
