@@ -95,14 +95,12 @@ const main = async (): Promise<void> => {
 	while (true) {
 		await performCalculation();
 
-		const { again } = await inquirer.prompt<Again>([
-			{
-				type: 'confirm',
-				name: 'again',
-				message: 'Do you want to perform another calculation?',
-				default: false
-			}
-		]);
+		const { again } = await inquirer.prompt<Again>({
+			type: 'confirm',
+			name: 'again',
+			message: 'Do you want to perform another calculation?',
+			default: false
+		});
 
 		if (!again) break;
 	}
