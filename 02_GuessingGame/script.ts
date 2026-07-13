@@ -2,18 +2,22 @@ import chalk from "chalk"; // Library for styling console output
 import inquirer from "inquirer"; // Library for creating interactive command-line prompts
 
 // Type for the answer
-type Answer = {
+type GuessAnswer = {
 	userGuess: number;
 }
 
-type Again = {
+type PlayAgain = {
 	again: boolean;
 }
 
-// Function to generate a random number between 1 and 10
+// Range of numbers the player has to guess
+const MIN = 1;
+const MAX = 10;
+
+// Function to generate a random number between MIN and MAX
 const generateNumber = (): number => {
-	return Math.floor(Math.random() * 10) + 1
-}
+	return Math.floor(Math.random() * (MAX - MIN + 1)) + MIN;
+};
 
 // Function to validate user input
 const validateNumber = (input: string): string | boolean => {
@@ -27,8 +31,8 @@ const validateNumber = (input: string): string | boolean => {
 		return 'Please enter a whole number';
 	}
 
-	if (num < 1 || num > 10) {
-		return 'Number must be between 1 and 10';
+	if (num < MIN || num > MAX) {
+		return `Number must be between ${MIN} and ${MAX}`;
 	}
 
 	return true;
@@ -41,10 +45,10 @@ const guessANumber = async () => {
 
 	try {
 		while (true) {
-			const answer: Answer = await inquirer.prompt<Answer>({
+			const answer = await inquirer.prompt<GuessAnswer>({
 				type: 'input',
 				name: 'userGuess',
-				message: 'Guess a number between 1 and 10:',
+				message: `Guess a number between ${MIN} and ${MAX}:`,
 				validate: validateNumber,
 				filter: (input: string) => Number(input)
 			});
@@ -71,7 +75,7 @@ const main = async (): Promise<void> => {
 	while (true) {
 		await guessANumber();
 
-		const { again } = await inquirer.prompt<Again>({
+		const { again } = await inquirer.prompt<PlayAgain>({
 			type: 'confirm',
 			name: 'again',
 			message: 'Do you want to play again?',
