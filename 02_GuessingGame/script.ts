@@ -1,5 +1,5 @@
-import chalk from "chalk"; // Library for styling console output
-import inquirer from "inquirer"; // Library for creating interactive command-line prompts
+import chalk from 'chalk'; // Library for styling console output
+import inquirer from 'inquirer'; // Library for creating interactive command-line prompts
 
 // Type for the answer
 type GuessAnswer = {
@@ -88,4 +88,5 @@ const main = async (): Promise<void> => {
 	console.log(chalk.green('Thank you for playing!'));
 };
 
+// Start the game
 main();
