@@ -20,7 +20,7 @@ const generateNumber = (): number => {
 };
 
 // Function to validate user input
-const validateNumber = (input: string): string | boolean => {
+const validateNumber = (input: string) => {
 	const num = Number(input);
 
 	if (input.trim() === '' || isNaN(num)) {
