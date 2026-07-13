@@ -1,14 +1,14 @@
 import chalk from "chalk"; // Library for styling console output
 import inquirer from "inquirer"; // Library for creating interactive command-line prompts
 
-// Type for the answers
-type Answers = {
+// Type for the answer
+type CalculatorAnswers = {
 	firstNumber: number;
 	secondNumber: number;
 	operator: '+' | '-' | '*' | '/';
 }
 
-type Again = {
+type PlayAgain = {
 	again: boolean;
 }
 
@@ -30,7 +30,7 @@ const toNumber = (input: string) => Number(input);
 // Function to perform the calculation based on user input
 const performCalculation = async (): Promise<void> => {
 	try {
-		const answers = await inquirer.prompt<Answers>([
+		const answers = await inquirer.prompt<CalculatorAnswers>([
 			{
 				type: 'input',
 				name: 'firstNumber',
@@ -96,7 +96,7 @@ const main = async (): Promise<void> => {
 	while (true) {
 		await performCalculation();
 
-		const { again } = await inquirer.prompt<Again>({
+		const { again } = await inquirer.prompt<PlayAgain>({
 			type: 'confirm',
 			name: 'again',
 			message: 'Do you want to perform another calculation?',
