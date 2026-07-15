@@ -61,7 +61,7 @@ typescript-small-projects/
 └── README.md           # Project documentation
 ```
 
-Each project is self-contained with its own `package.json`, `tsconfig.json` and `script.ts`.
+Each project is self-contained with its own `package.json`, `tsconfig.json`, `.editorconfig` and `script.ts`.
 
 ## 🔐 License 
 [MIT License](LICENSE)
