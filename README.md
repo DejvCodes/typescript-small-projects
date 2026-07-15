@@ -40,12 +40,11 @@
    • `git clone https://github.com/DejvCodes/typescript-small-projects.git` <br>
    • `cd typescript-small-projects` <br>
 2. Navigate to the project you want to run: <br>
-   • `cd 01_Calculator` or `cd 02_GuessingGame` or `cd 03_ATM` or `cd 04_WordCounter` <br>
+   • `cd 01_Calculator`, `cd 02_GuessingGame`, `cd 03_ATM` or `cd 04_WordCounter` <br>
 3. Install dependencies: <br>
    • `npm install` <br>
 4. Start the app: <br>
    • `npm start` <br>
-   • `npm run dev` restarts the app on every file change. <br>
 
 ## 💻 Tech Stack 
 [![My Skills](https://skillicons.dev/icons?i=javascript,typescript,nodejs)](https://skillicons.dev)
