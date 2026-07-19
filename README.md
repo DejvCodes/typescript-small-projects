@@ -63,4 +63,4 @@ typescript-small-projects/
 Each project is self-contained with its own `package.json`, `tsconfig.json`, `.editorconfig` and `script.ts`.
 
 ## 🔐 License 
-[MIT License](LICENSE)
+[MIT License](LICENSE) 
