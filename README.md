@@ -35,12 +35,20 @@
 • Displays the total word count in the terminal using Chalk for styling. <br>
 • Option to enter another sentence for counting.
 
+## 05_TodoList
+• Interactive command-line TodoList built with TypeScript and Inquirer.js. <br>
+• Menu with options to show, add, toggle and delete tasks. <br>
+• Tasks are stored in `todos.json`, so they survive a restart of the app. <br>
+• Uses the promise-based `node:fs/promises` API and saves after every change. <br>
+• Shows finished tasks in green with a strikethrough and a summary of how many are done. <br>
+• Asks for confirmation before a task is deleted. <br>
+
 ## 🏃🏻 How to Run this App
 1. Clone the repository: <br>
    • `git clone https://github.com/DejvCodes/typescript-small-projects.git` <br>
    • `cd typescript-small-projects` <br>
 2. Navigate to the project you want to run: <br>
-   • `cd 01_Calculator`, `cd 02_GuessingGame`, `cd 03_ATM` or `cd 04_WordCounter` <br>
+   • `cd 01_Calculator`, `cd 02_GuessingGame`, `cd 03_ATM`, `cd 04_WordCounter` or `cd 05_TodoList` <br>
 3. Install dependencies: <br>
    • `npm install` <br>
 4. Start the app: <br>
@@ -56,6 +64,7 @@ typescript-small-projects/
 ├── 02_GuessingGame/    # Number guessing game (1-10)
 ├── 03_ATM/             # ATM simulation with deposits and withdrawals
 ├── 04_WordCounter/     # Word counter for text input
+├── 05_TodoList/        # Todo list with tasks saved to a JSON file
 ├── LICENSE             # MIT License
 └── README.md           # Project documentation
 ```
