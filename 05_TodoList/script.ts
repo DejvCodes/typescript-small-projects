@@ -39,7 +39,7 @@ const loadTodos = async (): Promise<Todo[]> => {
 // Function to save the tasks
 const saveTodos = async (todos: Todo[]): Promise<void> => {
 	await writeFile(dataFile, JSON.stringify(todos, null, 2), 'utf-8');
-};
+}; 
 
 // Function to validate the task title entered by the user
 const validateTitle = (input: string) => {
