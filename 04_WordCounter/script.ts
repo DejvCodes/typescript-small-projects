@@ -11,6 +11,7 @@ const validateSentence = (input: string) => {
 	if (!input || input.trim() === '') {
 		return 'Input cannot be empty';
 	}
+	
 	return true;
 };
 
