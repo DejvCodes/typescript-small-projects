@@ -43,12 +43,20 @@
 • Shows finished tasks in green with a strikethrough and a summary of how many are done. <br>
 • Asks for confirmation before a task is deleted. <br>
 
+## 06_WeatherApp
+• Interactive command-line WeatherApp built with TypeScript and Inquirer.js. <br>
+• Prompts the user for a city and looks up its coordinates through the Open-Meteo geocoding API. <br>
+• Lets the user pick the right place when the city name is not unique (e.g. Brno vs. Bruno). <br>
+• Shows the current temperature, feels-like value, humidity and wind, plus a 3-day forecast. <br>
+• Uses the built-in `fetch` API with `async/await` and translates WMO weather codes into icons. <br>
+• Colours temperatures by how cold or warm they are and needs no API key. <br>
+
 ## 🏃🏻 How to Run this App
 1. Clone the repository: <br>
    • `git clone https://github.com/DejvCodes/typescript-small-projects.git` <br>
    • `cd typescript-small-projects` <br>
 2. Navigate to the project you want to run: <br>
-   • `cd 01_Calculator`, `cd 02_GuessingGame`, `cd 03_ATM`, `cd 04_WordCounter` or `cd 05_TodoList` <br>
+   • `cd 01_Calculator`, `cd 02_GuessingGame`, `cd 03_ATM`, `cd 04_WordCounter`, `cd 05_TodoList` or `cd 06_WeatherApp` <br>
 3. Install dependencies: <br>
    • `npm install` <br>
 4. Start the app: <br>
@@ -65,6 +73,7 @@ typescript-small-projects/
 ├── 03_ATM/             # ATM simulation with deposits and withdrawals
 ├── 04_WordCounter/     # Word counter for text input
 ├── 05_TodoList/        # Todo list with tasks saved to a JSON file
+├── 06_WeatherApp/      # Weather forecast by city from the Open-Meteo API
 ├── LICENSE             # MIT License
 └── README.md           # Project documentation
 ```
