@@ -1,8 +1,12 @@
 {
+  "name": "calculator",
+  "description": "Interactive command-line calculator with basic arithmetic operations",
+  "private": true,
+  "type": "module",
   "scripts": {
     "start": "tsx script.ts",
     "dev": "tsx watch script.ts",
-    "build": "tsc"
+    "typecheck": "tsc"
   },
   "devDependencies": {
     "tsx": "^4.22.5",
