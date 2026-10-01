@@ -11,7 +11,7 @@ const validateSentence = (input: string) => {
 	if (!input || input.trim() === '') {
 		return 'Input cannot be empty';
 	}
-	
+
 	return true;
 };
 
@@ -24,7 +24,7 @@ const wordCounter = async () => {
 				name: 'sentence',
 				message: 'Enter a sentence to count the words:',
 				validate: validateSentence
-			}
+			} 
 		]);
 
 		// trim() is required: leading/trailing whitespace would produce empty entries in the split result
