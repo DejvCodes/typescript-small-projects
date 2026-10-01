@@ -1,13 +1,20 @@
 import chalk from 'chalk'; // Library for styling console output
 import inquirer from 'inquirer'; // Library for creating interactive command-line prompts
 
-type Answer = {
+type Credentials = {
 	userID: string;
 	userPIN: string;
+}
+
+type Answer = {
 	transactionType: 'Quick withdrawal' | 'Custom withdrawal' | 'Deposit';
 	quickAmount: number;
 	customAmount: number;
 	depositAmount: number;
+}
+
+type AskAgain = {
+	again: boolean;
 }
 
 // Initial balance and user credentials
@@ -85,22 +92,29 @@ const validateDepositAmount = (input: string) => {
 	return true;
 };
 
-const atm = async (): Promise<void> => {
+// Function to log the user in
+const login = async (): Promise<void> => {
+	await inquirer.prompt<Credentials>([
+		{
+			type: 'input',
+			name: 'userID',
+			message: 'Enter your user ID:',
+			validate: validateUserID,
+		},
+		{
+			type: 'password',
+			name: 'userPIN',
+			message: 'Enter your PIN:',
+			mask: '*',
+			validate: validateUserPIN,
+		}
+	]);
+};
+
+// Function to perform a single transaction
+const performTransaction = async (): Promise<void> => {
 	try {
 		const answers = await inquirer.prompt<Answer>([
-			{
-				type: 'input',
-				name: 'userID',
-				message: 'Enter your user ID:',
-				validate: validateUserID,
-			},
-			{
-				type: 'password',
-				name: 'userPIN',
-				message: 'Enter your PIN:',
-				mask: '*',
-				validate: validateUserPIN,
-			},
 			{
 				type: 'select',
 				name: 'transactionType',
@@ -156,5 +170,25 @@ const atm = async (): Promise<void> => {
 	}
 };
 
+// Main function: log in once, then run transactions until the user decides to stop
+const main = async (): Promise<void> => {
+	await login();
+
+	while (true) {
+		await performTransaction();
+
+		const { again } = await inquirer.prompt<AskAgain>({
+			type: 'confirm',
+			name: 'again',
+			message: 'Do you want to make another transaction?',
+			default: false
+		});
+
+		if (!again) break;
+	}
+
+	console.log(chalk.green(`Thank you for using the ATM! Final balance: ${formatPrice(balance)}`));
+};
+
 // Start the ATM app
-atm();
+main();

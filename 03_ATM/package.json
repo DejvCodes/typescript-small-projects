@@ -1,8 +1,12 @@
 {
+  "name": "atm",
+  "description": "Interactive command-line ATM simulation with deposits and withdrawals",
+  "private": true,
+  "type": "module",
   "scripts": {
     "start": "tsx script.ts",
     "dev": "tsx watch script.ts",
-    "build": "tsc"
+    "typecheck": "tsc"
   },
   "devDependencies": {
     "tsx": "^4.22.5",
