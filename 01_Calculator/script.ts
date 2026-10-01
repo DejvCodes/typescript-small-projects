@@ -19,13 +19,28 @@ const showError = (message: string) => {
 
 // Shared validation and filtering for number inputs
 const validateNumber = (input: string) => {
-	return input.trim() === '' || isNaN(Number(input))
+	return input.trim() === '' || !Number.isFinite(Number(input))
 		? 'Please enter a valid number'
 		: true;
 };
 
 // Convert input to number
 const toNumber = (input: string) => Number(input);
+
+// Inquirer throws this error when the user presses Ctrl+C
+const isPromptExit = (error: unknown) => {
+	return error instanceof Error && error.name === 'ExitPromptError';
+};
+
+// Function to end the app quietly on Ctrl+C instead of printing a stack trace
+const handleExit = (error: unknown) => {
+	if (isPromptExit(error)) {
+		console.log(chalk.gray('\nBye!'));
+		return;
+	}
+
+	throw error;
+};
 
 // Function to perform the calculation based on user input
 const performCalculation = async (): Promise<void> => {
@@ -87,6 +102,8 @@ const performCalculation = async (): Promise<void> => {
 		console.log(chalk.cyan(`Result: ${firstNumber} ${operator} ${secondNumber} = ${finalResult}`));
 
 	} catch (err) {
+		if (isPromptExit(err)) throw err;
+
 		console.error(chalk.red('Something went wrong:'), err);
 	}
 };
@@ -110,4 +127,4 @@ const main = async (): Promise<void> => {
 };
 
 // Start the calculator app
-main();
+main().catch(handleExit);
