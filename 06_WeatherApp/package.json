@@ -1,8 +1,12 @@
 {
+  "name": "weather-app",
+  "description": "Interactive command-line weather forecast using the Open-Meteo API",
+  "private": true,
+  "type": "module",
   "scripts": {
     "start": "tsx script.ts",
     "dev": "tsx watch script.ts",
-    "build": "tsc"
+    "typecheck": "tsc"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
