@@ -82,6 +82,21 @@ const validateCity = (input: string) => {
 	return true;
 };
 
+// Inquirer throws this error when the user presses Ctrl+C
+const isPromptExit = (error: unknown) => {
+	return error instanceof Error && error.name === 'ExitPromptError';
+};
+
+// Function to end the app quietly on Ctrl+C instead of printing a stack trace
+const handleExit = (error: unknown) => {
+	if (isPromptExit(error)) {
+		console.log(chalk.gray('\nBye!'));
+		return;
+	}
+
+	throw error;
+};
+
 // Function to describe the weather based on its code
 const describeWeather = (code: number) => {
 	return weatherCodes[code] ?? { label: 'Unknown weather', icon: '❓' };
@@ -236,6 +251,8 @@ const showWeather = async () => {
 		showForecast(forecast);
 
 	} catch (error) {
+		if (isPromptExit(error)) throw error;
+
 		console.error(chalk.red('Could not load the weather:'), (error as Error).message);
 	}
 };
@@ -265,4 +282,4 @@ const main = async () => {
 };
 
 // Start the Weather App
-main();
+main().catch(handleExit);
