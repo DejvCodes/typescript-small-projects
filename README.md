@@ -9,7 +9,7 @@
 • Interactive command-line Calculator built with TypeScript and Inquirer.js. <br>
 • Supports basic arithmetic operations: +, -, *, /. <br>
 • Prompts the user to enter two numbers and an operator, then displays the result in the terminal. <br>
-• Validates the input and blocks division by zero. <br>
+• Validates the input (finite numbers only) and blocks division by zero. <br>
 • Rounds the result to two decimal places. <br>
 • Option to perform additional calculations after each result. <br>
 
@@ -25,8 +25,9 @@
 • Starts with a login prompt for a user ID and a masked PIN (demo credentials: `user` / `1111`). <br>
 • Allows users to select between "Quick withdrawal", "Custom withdrawal" or "Deposit". <br>
 • Predefined quick withdrawal amounts (1000, 2000, 3000, 5000 Kč) or a custom amount. <br>
-• Checks if the user has enough balance (starting balance: 10 000 Kč). <br>
-• Includes a function to format amounts in CZK. <br> 
+• Accepts only positive whole amounts and checks if the user has enough balance (starting balance: 10 000 Kč). <br>
+• Includes a function to format amounts in CZK. <br>
+• Option to make another transaction, with the balance carried over between them. <br>
 
 ## 04_WordCounter 
 • Interactive command-line WordCounter built with TypeScript and Inquirer.js. <br>
@@ -74,6 +75,7 @@ typescript-small-projects/
 ├── 04_WordCounter/     # Word counter for text input
 ├── 05_TodoList/        # Todo list with tasks saved to a JSON file
 ├── 06_WeatherApp/      # Weather forecast by city from the Open-Meteo API
+├── .gitignore          # Files ignored by Git (node_modules)
 ├── LICENSE             # MIT License
 └── README.md           # Project documentation
 ```
