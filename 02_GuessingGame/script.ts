@@ -38,6 +38,21 @@ const validateNumber = (input: string) => {
 	return true;
 };
 
+// Inquirer throws this error when the user presses Ctrl+C
+const isPromptExit = (error: unknown) => {
+	return error instanceof Error && error.name === 'ExitPromptError';
+};
+
+// Function to end the app quietly on Ctrl+C instead of printing a stack trace
+const handleExit = (error: unknown) => {
+	if (isPromptExit(error)) {
+		console.log(chalk.gray('\nBye!'));
+		return;
+	}
+
+	throw error;
+};
+
 // Function to handle the guessing game logic
 const guessANumber = async () => {
 	const randomNumber = generateNumber();
@@ -66,6 +81,8 @@ const guessANumber = async () => {
 			}
 		}
 	} catch (error) {
+		if (isPromptExit(error)) throw error;
+
 		console.error(chalk.red('An error occurred. Please try again.'));
 	}
 };
@@ -89,4 +106,4 @@ const main = async (): Promise<void> => {
 };
 
 // Start the game
-main();
+main().catch(handleExit);
