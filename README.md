@@ -34,7 +34,7 @@
 • Prompts the user to enter a sentence. <br>
 • Splits the sentence into words and counts them. <br>
 • Displays the total word count in the terminal using Chalk for styling. <br>
-• Option to enter another sentence for counting.
+• Option to enter another sentence for counting. <br>
 
 ## 05_TodoList
 • Interactive command-line TodoList built with TypeScript and Inquirer.js. <br>
@@ -47,10 +47,10 @@
 ## 06_WeatherApp
 • Interactive command-line WeatherApp built with TypeScript and Inquirer.js. <br>
 • Prompts the user for a city and looks up its coordinates through the Open-Meteo geocoding API. <br>
-• Lets the user pick the right place when the city name is not unique (e.g. Brno vs. Bruno). <br>
+• Lets the user pick the right place when the city name is not unique (e.g. Paris, France vs. Paris, Texas). <br>
 • Shows the current temperature, feels-like value, humidity and wind, plus a 3-day forecast. <br>
 • Uses the built-in `fetch` API with `async/await` and translates WMO weather codes into icons. <br>
-• Colours temperatures by how cold or warm they are and needs no API key. <br>
+• Colors temperatures by how cold or warm they are and needs no API key. <br>
 
 ## 🏃🏻 How to Run this App
 1. Clone the repository: <br>
