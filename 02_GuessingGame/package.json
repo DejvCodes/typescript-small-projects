@@ -1,8 +1,12 @@
 {
+  "name": "guessing-game",
+  "description": "Interactive command-line number guessing game",
+  "private": true,
+  "type": "module",
   "scripts": {
     "start": "tsx script.ts",
     "dev": "tsx watch script.ts",
-    "build": "tsc"
+    "typecheck": "tsc"
   },
   "devDependencies": {
     "tsx": "^4.22.5",
