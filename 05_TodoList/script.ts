@@ -50,6 +50,11 @@ const validateTitle = (input: string) => {
 	return true;
 };
 
+// Inquirer throws this error when the user presses Ctrl+C
+const isPromptExit = (error: unknown) => {
+	return error instanceof Error && error.name === 'ExitPromptError';
+};
+
 // Function to turn tasks into inquirer choices
 const toChoices = (todos: Todo[]) => {
 	return todos.map((todo) => ({
@@ -210,6 +215,12 @@ const main = async () => {
 		}
 
 	} catch (error) {
+		// End quietly on Ctrl+C instead of printing a stack trace
+		if (isPromptExit(error)) {
+			console.log(chalk.gray('\nBye!'));
+			return;
+		}
+
 		console.error(chalk.red('An error occurred:'), error);
 	}
 };
