@@ -70,8 +70,8 @@ const validateUserPIN = (input: string) => {
 const validateAmount = (input: string) => {
 	const amount = Number(input);
 
-	if (isNaN(amount) || amount <= 0) {
-		return 'Please enter a valid positive number';
+	if (!Number.isInteger(amount) || amount <= 0) {
+		return 'Please enter a positive whole number';
 	}
 
 	if (amount > balance) {
@@ -85,11 +85,26 @@ const validateAmount = (input: string) => {
 const validateDepositAmount = (input: string) => {
 	const amount = Number(input);
 
-	if (isNaN(amount) || amount <= 0) {
-		return 'Please enter a valid positive number';
+	if (!Number.isInteger(amount) || amount <= 0) {
+		return 'Please enter a positive whole number';
 	}
 
 	return true;
+};
+
+// Inquirer throws this error when the user presses Ctrl+C
+const isPromptExit = (error: unknown) => {
+	return error instanceof Error && error.name === 'ExitPromptError';
+};
+
+// Function to end the app quietly on Ctrl+C instead of printing a stack trace
+const handleExit = (error: unknown) => {
+	if (isPromptExit(error)) {
+		console.log(chalk.gray('\nBye!'));
+		return;
+	}
+
+	throw error;
 };
 
 // Function to log the user in
@@ -166,6 +181,8 @@ const performTransaction = async (): Promise<void> => {
 		}
 
 	} catch (error) {
+		if (isPromptExit(error)) throw error;
+
 		console.error(chalk.red('An error occurred:'), error);
 	}
 };
@@ -191,4 +208,4 @@ const main = async (): Promise<void> => {
 };
 
 // Start the ATM app
-main();
+main().catch(handleExit);
