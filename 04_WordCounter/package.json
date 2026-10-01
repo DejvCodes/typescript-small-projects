@@ -1,8 +1,12 @@
 {
+  "name": "word-counter",
+  "description": "Interactive command-line word counter",
+  "private": true,
+  "type": "module",
   "scripts": {
     "start": "tsx script.ts",
     "dev": "tsx watch script.ts",
-    "build": "tsc"
+    "typecheck": "tsc"
   },
   "devDependencies": {
     "tsx": "^4.22.5",
